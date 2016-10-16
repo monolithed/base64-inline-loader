@@ -66,9 +66,6 @@ module.exports = {
 };
 ```
 
-For more information about webpack loaders see official [documentation](http://webpack.github.io/docs/using-loaders.html). 
-
-
 #### Input
 
 ```css
@@ -94,3 +91,5 @@ body {
 	background-image: url('data:application/png;charset=utf-8;base64,[BASE_64_STRING...]');
 }
 ```
+
+For more information about webpack loaders see official [documentation](http://webpack.github.io/docs/using-loaders.html). 
