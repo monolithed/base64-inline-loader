@@ -1,0 +1,26 @@
+{
+	"name": "base64-inline-loader",
+	"version": "0.0.1",
+	"description": "Base64 loader for Webpack",
+	"author": "Alexander Abashkin <monolithed@gmail.com>",
+	"license": "MIT",
+
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:monolithed/base64-inline-loader.git"
+	},
+
+	"engines": {
+		"node": ">=6.2",
+		"npm": ">=3.8"
+	},
+
+	"dependencies": {
+		"loader-utils": "^0.2.16",
+		"mime-types": "^2.1.12"
+	},
+
+	"peerDependencies": {
+		"webpack": "^1.x"
+	}
+}
