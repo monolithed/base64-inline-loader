@@ -1,5 +1,4 @@
 let assert = require('assert');
-let crypto = require('crypto');
 let path = require('path');
 let fs = require('fs');
 
