@@ -2,7 +2,7 @@
 
 > Base64 loader for Webpack
 
-This loader supports the most popular file extensions and can be injected directly into a file.
+This loader supports the most popular file extensions and can be injected directly into a file as base64 string.
 
 
 ### Installation
