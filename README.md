@@ -93,3 +93,9 @@ body {
 ```
 
 For more information about webpack loaders see official [documentation](http://webpack.github.io/docs/using-loaders.html). 
+
+## Tests
+
+```
+npm test
+```
