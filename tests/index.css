@@ -1,8 +1,0 @@
-@font-face {
-	font-family: 'icons';
-	src: url('./fixture/fonts/material.woff');
-}
-
-body {
-	background-image: url('./fixture/icons/16x16.png');
-}

@@ -1,0 +1,8 @@
+@font-face {
+	font-family: 'icons';
+	src: url('./fonts/material.woff');
+}
+
+body {
+	background-image: url('./icons/16x16.png');
+}

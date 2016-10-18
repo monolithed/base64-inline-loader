@@ -17,7 +17,8 @@
 	},
 
 	"scripts": {
-		"test": "mocha --full-trace --ui tdd index.js tests/index.js",
+		"test": "npm run webpack && npm run mocha",
+		"mocha": "mocha --full-trace --ui tdd index.js tests/index.js",
 		"webpack": "webpack --progress --display-error-details --config tests/config.js"
 	},
 
