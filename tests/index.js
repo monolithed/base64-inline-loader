@@ -18,7 +18,7 @@ describe('Default test', () => {
 		});
 	});
 
-	it('Convert files into base64', () => {
+	it('Convert files', () => {
 		assert.equal(actual, expected, 'Files not are equal');
 	});
 });
