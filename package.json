@@ -1,6 +1,6 @@
 {
 	"name": "base64-inline-loader",
-	"version": "0.0.2",
+	"version": "1.0.0",
 	"description": "Base64 loader for Webpack",
 	"keywords": ["webpack", "base64", "css", "fonts", "images", "loader"],
 	"author": "Alexander Abashkin <monolithed@gmail.com>",
