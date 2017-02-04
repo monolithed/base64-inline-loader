@@ -31,11 +31,11 @@
 		"css-loader": "^0.23.0",
 		"extract-text-webpack-plugin": "^1.0.1",
 		"style-loader" : "^0.13.0",
-		"mocha": "3.1.2",
-		"webpack": "1.13.2"
+		"mocha": "^3.1.2",
+		"webpack": "^2.x"
 	},
 
 	"peerDependencies": {
-		"webpack": "^1.x"
+		"webpack": "^2.x"
 	}
 }
