@@ -18,15 +18,19 @@ module.exports = [
 		],
 
 		module: {
-			loaders: [
+			rules: [
 				{
-					test   : /\.(png|css|woff)$/,
-					loader: path.join(__dirname, '../index.js')
+					test: /\.(png|css|woff)$/,
+					use: path.join(__dirname, '../index.js')
 				},
 
 				{
-					test   : /\.css$/,
-					loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+					test: /\.css$/,
+
+					use: ExtractTextPlugin.extract({
+						fallbackLoader: 'style-loader',
+						loader: 'css-loader'
+					})
 				}
 			]
 		}

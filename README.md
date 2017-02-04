@@ -19,7 +19,7 @@ or
 
 ```js
 "devDependencies": {
-	"base64-inline-loader": "^0.x"
+	"base64-inline-loader": "^1.x"
 }
 ```
 
@@ -39,27 +39,27 @@ module.exports = {
 	],
 
 	output: {
-		path      : `${DIR_NAME}/cache`,
-		filename  : 'build.js',
+		path: `${DIR_NAME}/cache`,
+		filename: 'build.js',
 		publicPath: '/'
 	},
 
 	resolve: {
-		extensions: ['', '.js', '.jsx', '.json', '.css'],
+		extensions: ['.js', '.jsx', '.json', '.css'],
 	},
 
 	target : 'web',
 
 	module: {
-		loaders: [
+		rules: [
 			{
-				test   : /\.css$/,
-				loaders: ['style', 'css' ]
+				test: /\.css$/,
+				use: ['style-loader', 'css-loader' ]
 			},
 
 			{
-				test   : /\.(jpe?g|png|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
-				loader: 'base64-inline-loader'
+				test: /\.(jpe?g|png|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+				use: 'base64-inline-loader'
 			}
 		]
 	}
