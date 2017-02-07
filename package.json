@@ -24,12 +24,14 @@
 
 	"dependencies": {
 		"loader-utils": "^0.2.16",
+		"file-loader": "^0.10.0",
 		"mime-types": "^2.1.12"
 	},
 
 	"devDependencies": {
 		"css-loader": "^0.23.0",
 		"extract-text-webpack-plugin": "^2.0.0-rc.3",
+		"clean-webpack-plugin": "^0.1.15",
 		"style-loader" : "^0.13.0",
 		"mocha": "^3.1.2",
 		"webpack": "^2.x"

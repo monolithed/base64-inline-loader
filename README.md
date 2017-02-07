@@ -59,7 +59,7 @@ module.exports = {
 
 			{
 				test: /\.(jpe?g|png|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
-				use: 'base64-inline-loader'
+				use: 'base64-inline-loader?limit=1000&name=[name].[ext]'
 			}
 		]
 	}
@@ -91,6 +91,13 @@ body {
 	background-image: url('data:application/png;charset=utf-8;base64,[BASE_64_STRING...]');
 }
 ```
+
+### Options
+
+* `limit` — The limit can be specified with a query parameter. (Defaults to no limit).<br />
+If the file is greater than the limit (in bytes) the file-loader is used and all query parameters are passed to it.
+
+* `name` — The name is a standard option.
 
 For more information about webpack loaders see official [documentation](http://webpack.github.io/docs/using-loaders.html). 
 

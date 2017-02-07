@@ -3,7 +3,7 @@ let path = require('path');
 let fs = require('fs');
 
 let files = [
-	'./assets/index.css',
+	'./cache/index.css',
 	'./expected/index.css'
 ];
 

@@ -1,6 +1,7 @@
 'use strict';
 
 let loaderUtils = require('loader-utils');
+let fileLoader = require('file-loader');
 let mimeType = require('mime-types');
 
 module.exports = function (content) {
@@ -14,8 +15,9 @@ module.exports = function (content) {
 		context: query.context || this.options.context,
 		content: content,
 		regExp: query.regExp
-	})
-	.toLowerCase();
+	});
+
+	extension = extension.toLowerCase();
 
 	let type = mimeType.lookup(extension),
 		data = content.toString('base64');
@@ -24,9 +26,20 @@ module.exports = function (content) {
 		throw new Error(`${extension} type is not supported`);
 	}
 
-	let url = `data:${type};charset=utf-8;base64,${data}`;
+	let { limit = 0 } = query;
 
-	return `module.exports = ${JSON.stringify(url)}`;
+	try {
+		({ dataUrlLimit: limit } = this.options.url);
+	}
+	catch (error) { }
+
+	if (limit <= 0 || content.length < limit) {
+		let url = JSON.stringify(`data:${type};charset=utf-8;base64,${data}`);
+
+		return `module.exports = ${url}`;
+	}
+
+	return fileLoader.call(this, content);
 }
 
 module.exports.raw = true;
