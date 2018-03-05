@@ -3,7 +3,6 @@
 let path = require('path');
 let webpack = require('webpack');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
-let CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = [
 	{
@@ -15,10 +14,6 @@ module.exports = [
 		},
 
 		plugins: [
-			new CleanWebpackPlugin(['cache'], {
-				verbose: true
-			}),
-
 			new ExtractTextPlugin('index.css')
 		],
 
