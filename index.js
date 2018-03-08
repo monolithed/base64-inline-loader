@@ -9,12 +9,10 @@ module.exports = function (content) {
 		this.cacheable();
 	}
 
-	let query = loaderUtils.parseQuery(this.query);
-
 	let extension = loaderUtils.interpolateName(this, '[ext]', {
-		context: query.context || this.options.context,
+		context: this.query.context || this.rootContext,
 		content: content,
-		regExp: query.regExp
+		regExp: this.query.regExp
 	});
 
 	extension = extension.toLowerCase();
@@ -26,10 +24,10 @@ module.exports = function (content) {
 		throw new Error(`${extension} type is not supported`);
 	}
 
-	let { limit = 0 } = query;
+	let { limit = 0 } = this.query;
 
 	try {
-		({ dataUrlLimit: limit } = this.options.url);
+		({ dataUrlLimit: limit } = this.query.url);
 	}
 	catch (error) { }
 
