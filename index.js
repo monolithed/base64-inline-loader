@@ -9,22 +9,28 @@ module.exports = function (content) {
 		this.cacheable();
 	}
 
-	let extension = loaderUtils.interpolateName(this, '[ext]', {
-		context: this.query.context || this.rootContext,
-		content: content,
-		regExp: this.query.regExp
-	});
+	let { explicitMimeType, limit = 0 } = this.query,
+		type;
 
-	extension = extension.toLowerCase();
+	if (explicitMimeType) {
+		type = explicitMimeType;
+	} else {
+		let extension = loaderUtils.interpolateName(this, '[ext]', {
+			context: this.query.context || this.rootContext,
+			content: content,
+			regExp: this.query.regExp
+		});
 
-	let type = mimeType.lookup(extension),
-		data = content.toString('base64');
+		extension = extension.toLowerCase();
 
-	if (!type) {
-		throw new Error(`${extension} type is not supported`);
+		type = mimeType.lookup(extension);
+
+		if (!type) {
+			throw new Error(`${extension} type is not supported`);
+		}
 	}
 
-	let { limit = 0 } = this.query;
+	let data = content.toString('base64');
 
 	try {
 		({ dataUrlLimit: limit } = this.query.url);
@@ -38,6 +44,6 @@ module.exports = function (content) {
 	}
 
 	return fileLoader.call(this, content);
-}
+};
 
 module.exports.raw = true;

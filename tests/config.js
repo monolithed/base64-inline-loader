@@ -30,6 +30,17 @@ module.exports = [
 					}
 				},
 				{
+					test: /\.jpg$/, // the sample file has actually just the jpg extension, the content is identical to the png
+					use: {
+						loader: path.join(__dirname, '../index.js'),
+						query: {
+							limit: 1000,
+							name: '[name].[ext]',
+							explicitMimeType: "image/png"
+						}
+					}
+				},
+				{
 					test: /\.css$/,
 					use: ExtractTextPlugin.extract({
 						fallback: 'style-loader',
