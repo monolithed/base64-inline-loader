@@ -6,3 +6,7 @@
 body {
 	background-image: url('./icons/16x16.png');
 }
+
+body img {
+	background-image: url('./icons/16x16.jpg');
+}
