@@ -39,6 +39,6 @@
 		"webpack-cli": "^2.0.10"
 	},
 	"peerDependencies": {
-		"webpack": "^4.x"
+		"webpack": "^4.x|^5.x"
 	}
 }
