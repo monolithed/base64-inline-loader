@@ -2,23 +2,11 @@ let assert = require('assert');
 let path = require('path');
 let fs = require('fs');
 
-let files = [
-	'./cache/index.css',
-	'./expected/index.css'
-];
-
-let actual, expected;
-
 describe('Default test', () => {
-	before(() => {
-		[ actual, expected ] = files.map(name => {
-			let file = path.join(__dirname, name);
+    it('Encode files', () => {
+        const actual = fs.readFileSync(path.join(__dirname, './actual/index.css'), 'utf-8');
+        const expected = fs.readFileSync(path.join(__dirname, './expected/index.css'), 'utf-8');
 
-			return fs.readFileSync(file, 'utf-8');
-		});
-	});
-
-	it('Convert files', () => {
-		assert.equal(actual, expected, 'Files not are equal');
-	});
+        assert.equal(actual, expected, 'Files not are equal');
+    });
 });

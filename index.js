@@ -1,43 +1,36 @@
-'use strict';
-
-let loaderUtils = require('loader-utils');
-let fileLoader = require('file-loader');
-let mimeType = require('mime-types');
+const loaderUtils = require('loader-utils');
+const mimeTypes = require('mime-types');
 
 module.exports = function (content) {
-	if (this.cacheable) {
-		this.cacheable();
-	}
+    const {
+        regExp,
+        limit = 0,
+        typeMapper = {},
+        context = this.rootContext
+    } = this.query;
 
-	let extension = loaderUtils.interpolateName(this, '[ext]', {
-		context: this.query.context || this.rootContext,
-		content: content,
-		regExp: this.query.regExp
-	});
+    if (this.cacheable) {
+        this.cacheable();
+    }
 
-	extension = extension.toLowerCase();
+    let extension = loaderUtils
+        .interpolateName(this, '[ext]', {context, content, regExp})
+        .toLowerCase();
 
-	let type = mimeType.lookup(extension),
-		data = content.toString('base64');
+    let mimeType = mimeTypes.lookup(extension);
 
-	if (!type) {
-		throw new Error(`${extension} type is not supported`);
-	}
+    if (!mimeType) {
+        throw new Error(`${extension} type is not supported.`);
+    }
 
-	let { limit = 0 } = this.query;
+    if (limit && content.length > limit) {
+        throw new Error(`Exceeded the recommended limit (${limit}Kb). This can impact your performance.`);
+    }
 
-	try {
-		({ dataUrlLimit: limit } = this.query.url);
-	}
-	catch (error) { }
+    const base64 = content.toString('base64');
+    const data = JSON.stringify(`data:${typeMapper[mimeType] || mimeType};charset=utf-8;base64,${base64}`);
 
-	if (limit <= 0 || content.length < limit) {
-		let url = JSON.stringify(`data:${type};charset=utf-8;base64,${data}`);
-
-		return `module.exports = ${url}`;
-	}
-
-	return fileLoader.call(this, content);
-}
+    return `module.exports = ${data}`;
+};
 
 module.exports.raw = true;

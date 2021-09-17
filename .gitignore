@@ -29,4 +29,5 @@ npm-debug.log
 # --------------------------
 
 .idea
-tests/cache
+/tests/actual
+yarn.lock

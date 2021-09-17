@@ -1,8 +1,16 @@
 @font-face {
-	font-family: 'icons';
-	src: url('./fonts/material.woff');
+    font-family: 'icons';
+    src: url('./font.woff');
 }
 
-body {
-	background-image: url('./icons/16x16.png');
+.mapped {
+    background-image: url('./mapped.png');
+}
+
+.host {
+    background-image: url('//example.com');
+}
+
+.protocol {
+    background-image: url('https://example.com');
 }

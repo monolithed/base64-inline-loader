@@ -1,9 +1,6 @@
 # base64-inline-loader
 
-> Base64 loader for Webpack
-
-This loader supports the most popular file extensions and can be injected directly into a file as base64 string.
-
+A Base64 loader for webpack. Encodes all binary files to Base64 strings.
 
 ### Installation
 
@@ -13,69 +10,51 @@ This loader supports the most popular file extensions and can be injected direct
 npm install base64-inline-loader --save
 ```
 
-or
+or 
 
-**package.json**
+**yarn**
 
-```js
-"devDependencies": {
-	"base64-inline-loader": "^1.x"
-}
 ```
+yarn add -D base64-inline-loader
+```
+
 
 ### Usage
 
 #### Config
 
 ```js
-let path = require('path');
 
-let Webpack = require('webpack');
-const DIR_NAME = path.join(__dirname, '..');
+const path = require('path');
 
-module.exports = {
-	entry: [
-		'./index.jsx'
-	],
+module.exports = [
+    {
+        ...
 
-	output: {
-		path: `${DIR_NAME}/cache`,
-		filename: 'build.js',
-		publicPath: '/'
-	},
+        module: {
+            rules: [
+                {
+                    test: /\.(jpe?g|png|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+                    use: ['base64-inline-loader']
+                }
+            ]
+        }
 
-	resolve: {
-		extensions: ['.js', '.jsx', '.json', '.css'],
-	},
-
-	target : 'web',
-
-	module: {
-		rules: [
-			{
-				test: /\.css$/,
-				use: ['style-loader', 'css-loader' ]
-			},
-
-			{
-				test: /\.(jpe?g|png|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
-				use: 'base64-inline-loader?limit=1000&name=[name].[ext]'
-			}
-		]
-	}
-};
+        ...
+    }
+];
 ```
 
 #### Input
 
 ```css
 @font-face {
-	font-family: 'icons';
-	src: url('./icon.woff');
+    font-family: 'icons';
+    src: url('./icon.woff');
 }
 
 body {
-	background-image: url('./image.png');
+    background-image: url('./image.png');
 }
 ```
 
@@ -83,23 +62,51 @@ body {
 
 ```css
 @font-face {
-	font-family: 'icons';
-	src: url('data:application/x-font-woff;charset=utf-8;base64,[BASE_64_STRING...]')
+    font-family: 'icons';
+    src: url('data:application/x-font-woff;charset=utf-8;base64,[BASE_64_STRING...]')
 }
 
 body {
-	background-image: url('data:application/png;charset=utf-8;base64,[BASE_64_STRING...]');
+    background-image: url('data:application/png;charset=utf-8;base64,[BASE_64_STRING...]');
 }
 ```
 
 ### Options
 
-* `limit` — The limit can be specified with a query parameter. (Defaults to no limit).<br />
-If the file is greater than the limit (in bytes) the file-loader is used and all query parameters are passed to it.
+* `limit` — The limit can be specified with a query parameter.<br />
 
-* `name` — The name is a standard option.
+```typescript
+{
+    use: {
+        loader: 'base64-inline-loader',
+        options: {
+            limit: 1000
+        }
+    }
+}
+```
 
-For more information about webpack loaders see official [documentation](http://webpack.github.io/docs/using-loaders.html). 
+* `typeMapper` — use this option to fix your non-standard MIME types<br />
+
+```js
+{
+    use: [
+        {
+            loader: 'base64-inline-loader',
+            options: {
+                typeMapper: {
+                    'text/less': 'text/css'
+                }
+            }
+        },
+        'less-loader'
+    ]
+}
+```
+
+```html
+<link rel="stylesheet" href="data:text/less;charset=utf-8;base64,Lm54dC1lcnJvci1wYW..." />
+````
 
 ## Tests
 
