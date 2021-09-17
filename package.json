@@ -1,6 +1,6 @@
 {
     "name": "base64-inline-loader",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "A Base64 loader for Webpack",
     "keywords": [
         "webpack",
@@ -22,7 +22,6 @@
         "webpack": "webpack --mode production --progress --config tests/wepack.config.js"
     },
     "dependencies": {
-        "file-loader": "^1.1.11",
         "loader-utils": "^2.0.0",
         "mime-types": "^2.1.32"
     },
