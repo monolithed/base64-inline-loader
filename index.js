@@ -23,7 +23,7 @@ module.exports = function (content) {
         throw new Error(`${extension} type is not supported.`);
     }
 
-    if (limit && content.length > limit) {
+    if (limit > 0 && content.length > limit) {
         throw new Error(`Exceeded the recommended limit (${limit}Kb). This can impact your performance.`);
     }
 
